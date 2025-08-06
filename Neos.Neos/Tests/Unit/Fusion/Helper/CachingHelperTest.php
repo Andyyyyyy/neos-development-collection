@@ -136,7 +136,8 @@ class CachingHelperTest extends UnitTestCase
                 'Node_7505d64a54e061b7acd54ccd58b49dc43500b635_ca511a55-c5c0-f7d7-8d71-8edeffc75306',
                 'Node_7505d64a54e061b7acd54ccd58b49dc43500b635_7005c7cf-4d19-ce36-0873-476b6cadb71a',
                 'Workspace_364cfc8e70b2baa23dbd14503d2bd00e063829e7',
-            ]]
+            ]],
+            [null, []],
         ];
     }
 
@@ -224,7 +225,8 @@ class CachingHelperTest extends UnitTestCase
                 'DescendantOf_7505d64a54e061b7acd54ccd58b49dc43500b635_ca511a55-c5c0-f7d7-8d71-8edeffc75306',
                 'DescendantOf_7505d64a54e061b7acd54ccd58b49dc43500b635_7005c7cf-4d19-ce36-0873-476b6cadb71a',
                 'Workspace_364cfc8e70b2baa23dbd14503d2bd00e063829e7',
-            ]]
+            ]],
+            [null, []],
         ];
     }
 
