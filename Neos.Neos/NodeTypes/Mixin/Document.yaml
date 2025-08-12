@@ -11,7 +11,6 @@
       '*': false
       # explicitly disallow to create a homepage below a regular document
       'Neos.Neos:Site': false
-      'Neos.Neos:Document': true
   ui:
     label: 'Document'
     group: 'general'
