@@ -19,7 +19,9 @@ use Neos\ContentRepository\Core\SharedModel\Node\NodeAddress;
 use Neos\ContentRepositoryRegistry\ContentRepositoryRegistry;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Authorization\PrivilegeManagerInterface;
+use Neos\Flow\Security\Context;
 use Neos\Fusion\Service\HtmlAugmenter as FusionHtmlAugmenter;
+use Neos\Neos\Security\Authorization\ContentRepositoryAuthorizationService;
 
 /**
  * The content element editable service adds the necessary markup around
@@ -48,16 +50,26 @@ class ContentElementEditableService
      */
     protected $contentRepositoryRegistry;
 
+    #[Flow\Inject]
+    protected Context $securityContext;
+
+    #[Flow\Inject]
+    protected ContentRepositoryAuthorizationService $nodeAuthorizationService;
+
     public function wrapContentProperty(Node $node, string $property, string $content): string
     {
         $contentRepository = $this->contentRepositoryRegistry->get(
             $node->contentRepositoryId
         );
 
-        // TODO: permissions
-        //if (!$this->nodeAuthorizationService->isGrantedToEditNode($node)) {
-        //    return $content;
-        //}
+        $roles = $this->securityContext->getRoles();
+
+
+        $nodePermissions = $this->nodeAuthorizationService->getNodePermissions($node, $roles);
+
+        if (!$nodePermissions->edit) {
+            return $content;
+        }
 
         $attributes = [
             'data-__neos-property' => $property,
